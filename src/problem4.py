@@ -3,8 +3,8 @@ Exam 1, problem 4.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Colin Browne.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -68,11 +68,44 @@ def problem4(number_of_stairs, step_size, starting_point, window):
       :type window:            rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # IMPORTANT: For PARTIAL CREDIT, you can draw just the black "bottoms"
     #            of the stair steps.
     # -------------------------------------------------------------------------
+
+# Create starting point on the window
+    starting_point.attach_to(window)
+
+# Define Pre-loop conditions
+    point1 = starting_point
+
+
+# Create loop
+    for k in range(number_of_stairs):
+        point2 = rg.Point(point1.x , point1.y - step_size)
+
+        vertical_line = rg.Line(point1 , point2)
+        vertical_line.color = 'magenta'
+        vertical_line.thickness = 3
+        vertical_line.attach_to(window)
+
+# Move point1 to the end of the step(after going up and to the left)
+        point1 = rg.Point(point2.x + step_size , point2.y)
+
+# Construct the horizontal surface of the step from the top of the vertical line to the new point1)
+        horizontal_line = rg.Line(point2 , point1)
+        horizontal_line.color = 'black'
+        horizontal_line.thickness = 3
+        horizontal_line.attach_to(window)
+
+# Render the window
+        window.render()
+
+# Construct the endpoint at the end of the last stair,(now defined as point1)
+    point1.attach_to(window)
+    window.render()
+
 
 
 # -----------------------------------------------------------------------------
