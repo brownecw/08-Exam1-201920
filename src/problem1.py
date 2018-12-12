@@ -3,13 +3,13 @@ Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Colin Browne.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
 # -----------------------------------------------------------------------------
-# TODO: 2. Right-click on the  src  folder and
+# DONE: 2. Right-click on the  src  folder and
 #              Mark Directory as ... Sources Root,
 #          if you have not already done so.
 # -----------------------------------------------------------------------------
@@ -64,6 +64,31 @@ def run_test_problem1():
 
 
 def problem1(square, thickness, window):
+
+
+# Attaching the square first
+    square.attach_to(window)
+
+# Defining and attaching the Circle as specified
+    circle_center = rg.Point(square.center.x , square.center.y + square.length_of_each_side)
+    circle = rg.Circle(circle_center , square.length_of_each_side / 2)
+    circle.fill_color = square.fill_color
+    circle.outline_thickness = thickness
+    circle.attach_to(window)
+
+# Define and attach the line
+    line_start = circle.center
+    line_end = rg.Point(square.center.x - square.length_of_each_side / 2 , square.center.y)
+    line = rg.Line(line_start , line_end)
+    line.color = square.outline_color
+    line.thickness = thickness
+    line.attach_to(window)
+
+# Render the window
+    window.render()
+
+
+
     """
     See   problem1_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -101,7 +126,7 @@ def problem1(square, thickness, window):
       :type window:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
